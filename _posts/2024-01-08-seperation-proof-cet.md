@@ -6,6 +6,8 @@ tags: [proving things]
 classes: wide
 ---
 
+__Big thank you to professors Karol Horodecki and Thomas Vidick for helping me understand all the parts of the proof.__
+
 Below are my notes on the proof of Lemma 4.1 from the paper [Computational Quantum Entanglement](https://arxiv.org/abs/2310.02783). My approach is to take the proof apart and try to understand each step. I will try to explain the concepts in a way that is understandable for me. Each part will be taken as a $\textit{claim}$ and I will try to convince myself why it is true.
 
 Here I will focus only on proving bounds on part regarding (computational) entanglement distillation.
