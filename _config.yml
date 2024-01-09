@@ -10,18 +10,18 @@
 # Review documentation to determine if you should use `theme` or `remote_theme`
 # https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
 
-# theme                  : "minimal-mistakes-jekyll"
+theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
 minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Piotr Lewandowski - Blog"
+title                    : "Piotr Lewandowski"
 title_separator          : "-"
-subtitle                 : "Notes of not too smart and too serious"
+subtitle                 : "Personal notes about topics I find interesting"
 name                     : "Piotr Lewandowski"
 description              : "Piotr Lewandowski - Blog"
-url                      : "https://petlew.com"
+url                      : "navaro1.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
@@ -106,19 +106,19 @@ analytics:
 author:
   name             : "Piotr Lewandowski"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : # "Chcę rozwiązywać trudne problemy"
-  location         : "Gdańsk"
+  bio              : #""
+  location         : "Polkowice, Poland"
   email            : "piotr.w.lewandowski@gmail.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      # url: mailto:piotr.w.lewandowski@gmail.com
+      url: mailto:piotr.w.lewandowski@gmail.com
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://navaro1.github.io"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      # url: "https://twitter.com/"
+      url: "https://twitter.com/petlew1"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url: "https://www.facebook.com/petlew1/"
@@ -286,7 +286,7 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: false
+      read_time: true
       comments: # true
       share: true
       related: true
