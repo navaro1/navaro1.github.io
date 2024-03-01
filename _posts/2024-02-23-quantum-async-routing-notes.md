@@ -103,11 +103,45 @@ Title of the article contains "asynchronous", hence it would be good to explain 
 
 Overall, this is a very deep ocean, especially in world of algorithm analysis -- so let us try to narrow down what it does mean in context of the paper. It simply means that nodes in the network can perform operations (for example - creating entanglement) simultaneously, without any "global" coordination. 
 
+## Entanglement rate
+
+This value represents how much entanglement can be generated in a unit of time. Paraphrasing from paper: _It is the performance metric indicating the number of end-to-end entanglements (Bell states) that can be generated in a unit time $T$_.
+
 ## Refined problem statement
 
-With all those information, now we will try to refine the problem statement, make it more mathematically precise.
+This section will contain more mathematically precise statement of the problem. It is heavily based on Section 3 of the paper.
 
-# Section III: Main contribution
+Let graph $G(V, E)$ represent topology of a quantum network. Each node $v \in V$ represents a quantum repeater (capable of entanglement generation and swapping), while each edge $e \in E$ represents physical (e.g. fiber optic) node that connects two repeaters. Let $G'(V', E')$ be a graph, where $V' \subseteq V$. $G'$ represents quantum repeaters that are connected with each other via direct entanglement. Hence $e' \in E'$ represents entanglement connection (in the paper this is called ''direct-link entanglement''). 
+
+Each edge $e \in E$ has associated value $C(e)$ which represents _capacity_ of the link. Capacity is defined as maximum number of entangled pairs that can be generated between nodes connected by $e$. Moreover, each vertex $v \in V'$ also has capacity - $C(v)$, which is defined simply as number of qubits in that particular vertex (remember - vertex is simply a quantum repeater). $C(v)$ is defined as at least equal to sum of capacities of edges that connect $v$ with its neighbours $N(v)$. $C(v) \geq \sum_{e \in N(v)}C(e)$. This will allow us to simplify analysis, because there is no "competition" for qubits between links. 
+
+As mentioned before due to limitations of our technology to achieve desired fidelity $f$ (with EPR pair), we need $E(f)$ entanglement pairs to obtain it (via purification). We also define $T_{co}$, which is an _average coherence time_. It can be understood as how long we can actually maintain entanglement. After that time (on average) we will loose entanglement between two nodes. 
+
+In the paper - to simplify the analysis - each link capacity $C(e)$ and $E(f)$ are equal to $1$.
+
+For each entanglement generation that happens between nodes connected via edge $e$ there is probability $p(e)$ that generation will succeed. At each node $v$ there is probability of entanglement swapping succeeding denoted as $q(v)$. To simplify things authors of the paper denote equal $p(e)$ for all edges $e$ -- denoted simply as $p$. Analogously, $q$ represents success probability for entanglement swapping for all $v$.
+
+Entanglement rate $\zeta$ represents number of Bell states that can be generated in unit time $T \leq T_{co}$. This last inequality makes sense, because it allow us to narrow down time window to only consider generation of entanglements that all can "live" at the same time. 
+
+Moreover, additional (but important) constraint that authors put on themselves is that nodes only posses local knowledge about adjacent entanglement links.
+
+So the refined problem statement would be - given all of the above and assuming asynchronicity - how to design an algorithm that maximizes entanglement rate $\zeta$.
+
+# Section III: Main contributions
+
+I think one of the sentences gives good insight into inspiration for the approach taken by the authors (Section 3, page 8):
+
+> characteristic of entanglement resembles connection-oriented circuit switching rather than the connection-less packet switching used in classical networking.
+
+Given that this is important let's understand what is _connection-oriented circuit switching_ and _connection-less packet switching_.
+
+First the latter one.
+https://chat.openai.com/c/811444c4-4a99-47b8-81a7-347c4c43467f
+https://gemini.google.com/app/7a35b6889a5e4380
+
+## Overview
+
+
 
 # Section IV: Comparison with ''Distributed Routing in a Quantum Internet''
 
