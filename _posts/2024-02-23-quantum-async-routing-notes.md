@@ -129,6 +129,10 @@ So the refined problem statement would be - given all of the above and assuming 
 
 # Section III: Main contributions
 
+Before we dive into particular contributions, let us go through various ideas, tools and constructs used by authors to better understand main results
+
+## Connected-oriented circuit switching vs connection-less packet switching
+
 I think one of the sentences gives good insight into inspiration for the approach taken by the authors (Section 3, page 8):
 
 > characteristic of entanglement resembles connection-oriented circuit switching rather than the connection-less packet switching used in classical networking.
@@ -136,11 +140,86 @@ I think one of the sentences gives good insight into inspiration for the approac
 Given that this is important let's understand what is _connection-oriented circuit switching_ and _connection-less packet switching_.
 
 First the latter one.
-https://chat.openai.com/c/811444c4-4a99-47b8-81a7-347c4c43467f
-https://gemini.google.com/app/7a35b6889a5e4380
 
-## Overview
+In connection-less packet switching data is divided into _packets_ and each such _packet_ is treated independent unit. There is no pre-established path for data transmission for every packet. Packets may take different routes to reach the destination, and they might arrive out of order. The network nodes make routing decisions based on the current network conditions. 
 
+In connection-oriented circuit switching a dedicated communication path (known as circuit) is established between two parties before any data transfer occurs. The path remains reserved for the duration of the connection. 
+
+The entanglement cannot be split into parts, we need to reserve particular path to entangle nodes connected by that path. That's why the connected oriented approach seems like a more natural fit.
+## DODAG
+
+DODAG is an acronym that stands for _destination oriented directed acyclic graph_. The DAG part is usually well-known, especially in computer science world. The core property of DAG is having directed edges which form a path _without_ cycles. So going on any path on that graph will not bring you to place you've been before. 
+
+DODAG is a specific type of DAG that is leveraged in lossy networks (think of dynamic IoT scenario). The additional property to designate one of the vertices as a _root node_ that will have no outgoing edges. All other nodes in the graph can be reached from the root by following the directed edges. 
+
+## Spanning tree
+
+Spanning tree will also be leveraged within the paper. Given graph $G(V, E)$ its spanning tree is another graph that contains the same set of vertices $V$, _but_ it contains minimum possible number of edges to retain same connections as original graph have (connection here means being able to go from vertex $a$ to vertex $b$)
+
+## Distributed graph
+
+TODO
+
+## Instant topology
+
+TODO
+
+## Getting to the point
+
+With that long preface and all concepts, we can finally get to describing the key results of the paper. Whew! 
+
+### Key idea
+
+This is based heavily on section 4 of the article. 
+
+I think that good mental model for the _asynchronous routing scheme_ is a service (from software perspective). It is constantly "on" and reacts to particular queries (simplest example is some form of simple http server).
+
+This "routing service" is built from two main components: distributed graph and path determinator.
+
+First component -- the "distributed graph" -- is responsible for building and maintaining instant topology as a distributed graph. Second component is more of a server which respond to actual requests. If you are software engineering savvy, this routing scheme have traits of a reactive system.
+
+Given my personal software engineering context, I'll try to represent the scheme in a pseudocode.An instance of class below would run on every node/vertex/quantum repeater in the network.
+
+```python
+class AsynchronousRouterNode:
+  distributed_graph_component # responsible for building and maintaining instant topology 
+  current_node = self
+
+  # On instance startup
+  def startup():
+    distributed_graph_component.join(current_node)
+
+  # This function would be called as a classical operation with "classical bits"
+  def navigate(previous_node, destination_node):
+    maybe_next_node = distributed_graph_component.next_hop_determination(current_node, destination_node)
+    if maybe_next_node is None:
+      # a naive retry - try to join this node to distributed graph and retry the request
+      distributed_graph_component.join(current_node)
+      navigate(previous_node, destination_node)
+    else:
+      next_node = maybe_next_node
+      es_success = entanglement_swap(previous_node, next_node)
+      if not es_success: # if entanglement swapping failed
+        # once again - a naive retry.
+        distributed_graph_component.join(current_node)
+        navigate(previous_node, destination_node)
+      else:
+        emit_connection_request_to(next_node, destination_node, current_node)
+```
+
+This relatively short pseudocode gives good overview and shows that even if we get complicated behavior (asynchronous entanglement swapping) behaviour of an individual node is simple:
+1. On startup connect to the `distributed_graph_component`
+2. On request -- try to swap entanglement between previous node and next node. Here the important part is that `distributed_graph_component` maintains information about instant topology (where edges represents entanglement between nodes). If something fails - try to rejoin the graph and retry the request.
+
+We can see an unsafe infinite loop here (infinite retry), but this is of course just a pseudocode, so I can live with that.
+
+The important questions that arises - how we can realise the `distributed_graph_component`. From perspective of individual node this is completely opaque, but of course - we are interested in performance on an _actual_ solution. Authors propose two "protocols" that implements the component -- DODAG and Spanning Tree. I believe it is worthwhile to understand both approaches (at least on a high level). On the other hand there is possibility to implement other protocols as we develop the science behind it.
+
+#### DODAG distributed graph component
+
+
+
+#### Spanning tree distributed graph component
 
 
 # Section IV: Comparison with ''Distributed Routing in a Quantum Internet''
