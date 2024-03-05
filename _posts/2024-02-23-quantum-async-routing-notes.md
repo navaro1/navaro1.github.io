@@ -213,16 +213,27 @@ This relatively short pseudocode gives good overview and shows that even if we g
 
 We can see an unsafe infinite loop here (infinite retry), but this is of course just a pseudocode, so I can live with that.
 
-The important questions that arises - how we can realise the `distributed_graph_component`. From perspective of individual node this is completely opaque, but of course - we are interested in performance on an _actual_ solution. Authors propose two "protocols" that implements the component -- DODAG and Spanning Tree. I believe it is worthwhile to understand both approaches (at least on a high level). On the other hand there is possibility to implement other protocols as we develop the science behind it.
-
-#### DODAG distributed graph component
+The important questions that arises - how we can realise the `distributed_graph_component`. From perspective of individual node this is completely opaque, but of course - we are interested in performance on an _actual_ solution. Authors propose two "protocols" that implements the component -- DODAG and Spanning Tree. I believe it is worthwhile to understand both approaches (at least on a high level). On the other hand there is possibility to implement other protocols as we develop the science behind it. For detailed explanation please refer to the paper - esp. section 4.
 
 
+# Section IV: Simulation setup and results
 
-#### Spanning tree distributed graph component
+Now to the results. Authors provided interesting model, especially the fact that it moves towards asynchronicity -- which seems like a more natural fit for a network. The question remains if it is better than the synchronous approach.
 
+## Experiment setup
 
-# Section IV: Comparison with ''Distributed Routing in a Quantum Internet''
+Authors utilise entanglement rate (as defined above) $\zeta$ as a performance metric. They run the experiment on a 2D grid topology. Each node is connected to 4 other nodes (neighbours), with exception of edge nodes (those are connected to 3 neighbours) and ''corners'' (those are connected to 2 neighbors). Each node is only aware of the neighbours' statuses of entanglement (direct links in an instant topology) and has _no_ awareness about anything "larger" than that.
+
+Authors use [NetworkX](https://networkx.org/) python library to conduct the simulation. Simulation happens (as mentioned above) in a 2D grid network. It is not clearly stated in the paper what is the size of the grid, but from the description of the Figure 10, we might think that it is around $26 \times 26$.
+
+## Synchronous protocol
+
+Authors compare results to "synchronous" protocol. To make it meaningful let us understand what exactly is that protocol
+
+## Results
+
+![Simulation Results](/assets/img/async_quantum_routing/simulation_results.jpg "simulation_results")
+
 
 # Section V: Open problems, future work and potential direction
 	
