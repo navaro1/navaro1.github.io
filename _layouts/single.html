@@ -69,12 +69,6 @@ layout: default
     </div>
   </article>
 
-    <div class="page__related">
-      <h2 class="page__related-title">Comments</h2>
-      <div class="grid__wrapper">
-	      {% include gpgc_comments.html post_title=page.title %}
-      </div>
-    </div>
   {% comment %}<!-- only show related on a post page when `related: true` -->{% endcomment %}
   {% if page.id and page.related and site.related_posts.size > 0 %}
     <div class="page__related">
