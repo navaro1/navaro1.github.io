@@ -103,6 +103,8 @@ Title of the article contains "asynchronous", hence it would be good to explain 
 
 Overall, this is a very deep ocean, especially in world of algorithm analysis -- so let us try to narrow down what it does mean in context of the paper. It simply means that nodes in the network can perform operations (for example - creating entanglement) simultaneously, without any "global" coordination. 
 
+On the page 3, authors mention that existing (synchronous) approaches are generally divided in two phases -- external and internal. During the "external" phase, adjacent nodes establish entanglement between each other. During the "internal" phase -- nodes are only aware of entanglement status of their neighbours -- (quoting from article) "each repeater node swaps entanglement blindly to reach an end-to-end entanglement" between source and target nodes. If the source-target connection is not achieved, process is repeated. The "synchronous" aspect comes from the fact that internal phase needs all entanglement links built in external phase. Moreover, _all entanglements_ are consumed in each time slot. Time slot consists of external + internal phase.
+
 ## Entanglement rate
 
 This value represents how much entanglement can be generated in a unit of time. Paraphrasing from paper: _It is the performance metric indicating the number of end-to-end entanglements (Bell states) that can be generated in a unit time $T$_.
@@ -215,6 +217,9 @@ We can see an unsafe infinite loop here (infinite retry), but this is of course 
 
 The important questions that arises - how we can realise the `distributed_graph_component`. From perspective of individual node this is completely opaque, but of course - we are interested in performance on an _actual_ solution. Authors propose two "protocols" that implements the component -- DODAG and Spanning Tree. I believe it is worthwhile to understand both approaches (at least on a high level). On the other hand there is possibility to implement other protocols as we develop the science behind it. For detailed explanation please refer to the paper - esp. section 4.
 
+To give even more intuition on "how this works" let me quote from the conclusion section:
+"We treat all network nodes as vertices in a graph that try to connect their neighbours using direct-link entanglements. No central control and no global knowledge of the direct-link entanglements are needed in our method. Whenever a pair of nodes wants to create an end-to-end entanglement, they go through the distributed graph that is continuously updated to find each other"
+
 
 # Section IV: Simulation setup and results
 
@@ -228,12 +233,71 @@ Authors use [NetworkX](https://networkx.org/) python library to conduct the simu
 
 ## Synchronous protocol
 
-Authors compare results to "synchronous" protocol. To make it meaningful let us understand what exactly is that protocol
+Authors compare results to "synchronous" protocol. Authors do not describe precisely what protocol they are comparing against, so I assume that they leverage what they described in section 5.1. For us the main interest would be entanglement rate in synchronous protocol:
+
+$$
+\zeta_{syn}(s, t) = p^{l_{s,t}}q^{l_{s,t}-1}n_{s,t}
+$$
+
+Let us unpack:
+ - $s$ means source node
+ - $t$ is target node
+ - $p$ is probability of success of entanglement between adjacent nodes
+ - $q$ is probability of success of entanglement swap
+ - $l_{s,t}$ is the mean length of all possible paths between nodes $s$ and $t$ 
+ - $n_{s,t}$ average number of disjoint paths between $s$ and $t$ as $n_{s,t}$
+
+
+## On $T_{co}$
+
+To fully grasp simulation results, how coherence time -- $T_{co}$ -- is leveraged. $T_{co}$ represents coherence time or "how long entanglement is alive and usable". Entanglement _rate_ means that we are talking about how much entanglement we can generate per unit time $T$. For simulations (and analysis) to be meaningful we must assume that $T \leq T_{co}$ -- otherwise we would not have available entanglement after single time unit. Authors decided to represent $T_{co}$ as $n$ unit times, so $T_{co} = 3$ represents coherence time of 3 unit times. Unit time is equivalent to ''one time slot in synchronous operation'', but it is not clearly defined what it means. Entanglement rate for synchronous protocol is independent of $T_{co}$.
 
 ## Results
 
+>  Graphs are taken from [Asynchronous Entanglement Routing for the Quantum Internet](https://arxiv.org/abs/2312.14300)
+
+### Rate vs Distance (single-path)
+
 ![Simulation Results](/assets/img/async_quantum_routing/simulation_results.jpg "simulation_results")
 
+Single-path means that we search only for one path between source and destination nodes.
 
-# Section V: Open problems, future work and potential direction
-	
+First thing to notice is that for $T_{co} = 1$ synchronous approach beats asynchronous one. It makes sense, as there is an "additional baggage" for async communication -- which does not exist in synchronous approach. But, with $T_{co} = 2$ asynchronous protocols are beating synchronous approach.
+
+### Rate vs Entanglement Generation success
+
+![Q simulation results](/assets/img/async_quantum_routing/p_simulation_results.png "p_simulation_results")
+
+Here we can see similar results -- async approaches are better when coherence time increases, interesting question is that if we $p$ and $q$ approach $1$ - would we observe any difference? Graph on the left shows that with high values of $p$ and $q = 0.8$ we see almost no difference.
+
+
+### Rate vs Distance (multi-path)
+
+![multi path simulation results](/assets/img/async_quantum_routing/multi_path_results.jpg "multi_path_results")
+
+Multi-path means that we search for disjoint paths between source and target nodes. Once again the async approaches beat synchronous approach (but not that much).
+
+# Section V: Open problems, future work and potential directions
+
+## Network of networks
+
+Authors claim that DODAG roots can serve as gateways to connect multiple networks (constructing network of networks). Leveraging DODAG for async routing (as presented in this article) of network of networks is a direction for future exploration.
+
+## Root position
+
+Authors took center of the network as DODAG's root, but taking different nodes as roots and impact of that decision on entanglement rate warrants further investigation.
+
+## Networking properties
+
+Aspects like using (quoting/paraphrasing) "untrusted repeaters, minimal trust between network, malicious nodes, order of entanglement swapping along a path"
+
+## Network shapes
+
+Performance of routing schemes in networks with shape other than grid.
+
+### Personal propositions
+
+- Are there different structures other than DODAG?
+- What results for $T_{co} \in (1, 2)$?
+- More granular comparisons with different synchronous algorithms
+- (far fetched) can we learn something from blockchain related research? 
