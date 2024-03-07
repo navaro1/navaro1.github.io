@@ -1,5 +1,5 @@
 ---
-title: "Notes on ''Asynchronous Entanglement Routing for the Quantum Internet"
+title: "Notes on ''Asynchronous Entanglement Routing for the Quantum Internet''"
 categories: [quantum computing, routing, quantum routing] 
 tags: [quantum, routing, theory, notes]
 excerpt: "Let's try to understand article that presents more ''modern'' approach to creating entanglement between any two nodes in a quantum network"
