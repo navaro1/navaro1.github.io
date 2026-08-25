@@ -259,7 +259,7 @@ Confirm that the code copy button appears and works.
 
 Confirm that the browser console has no error or warning.
 
-- [ ] **Step 4: Commit the migration**
+- [x] **Step 4: Commit the migration**
 
 Run:
 
@@ -268,6 +268,6 @@ git add -A
 git commit -m "Migrate the site to Minimal Mistakes 4.28.1"
 ```
 
-- [ ] **Step 5: Request a final code review**
+- [x] **Step 5: Request a final code review**
 
 Use the review range from `409f4613` to the new feature branch head.

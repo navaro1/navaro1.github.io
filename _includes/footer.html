@@ -29,6 +29,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/mermaid.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    if (typeof window.mermaid === 'undefined') return;
+
     mermaid.initialize({
       startOnLoad: false,
       theme: 'default',

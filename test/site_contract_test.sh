@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-bundle exec jekyll build --quiet
+JEKYLL_ENV=production bundle exec jekyll build --safe --quiet
 
 python3 - <<'PY'
 from pathlib import Path
