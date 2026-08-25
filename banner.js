@@ -9,6 +9,7 @@ const date = `${dateObj.getFullYear()}-${padStart(
 )}-${padStart(dateObj.getDate())}`;
 const banner = `/*!
  * Minimal Mistakes Jekyll Theme ${pkg.version} by ${pkg.author}
+ * Includes jQuery 3.7.1
  * Copyright 2013-${dateObj.getFullYear()} Michael Rose - mademistakes.com | @mmistakes
  * Licensed under ${pkg.license}
  */

@@ -5,5 +5,29 @@ search: false
 
 @charset "utf-8";
 
+$max-width: 1440px;
+$right-sidebar-width-narrow: 210px;
+$right-sidebar-width: 260px;
+$right-sidebar-width-wide: 320px;
+
+$sans-serif: "InterVariable", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+$sans-serif-narrow: $sans-serif;
+$global-font-family: $sans-serif;
+$header-font-family: $sans-serif;
+$caption-font-family: $sans-serif;
+
+$background-color: #fbfcfe;
+$text-color: #17202a;
+$muted-text-color: #5d6b7a;
+$border-color: #dbe4ea;
+$footer-background-color: #f1f5f7;
+$primary-color: #006d77;
+$link-color: #006d77;
+$link-color-hover: #004f56;
+$link-color-visited: #385f73;
+$masthead-link-color: #17202a;
+$masthead-link-color-hover: #006d77;
+
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+@import "custom";

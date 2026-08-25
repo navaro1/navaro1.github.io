@@ -21,9 +21,9 @@ title_separator          : "-"
 subtitle                 : "Personal notes about topics I find interesting"
 name                     : "Piotr Lewandowski"
 description              : "Piotr Lewandowski - Blog"
-url                      : "navaro1.github.io"
+url                      : "https://plewandow.ski"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "navaro1/navaro1.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
@@ -96,9 +96,9 @@ social:
 
 # Analytics
 analytics:
-  provider               : "google" # false (default), "google", "google-universal", "custom"
+  provider               : false # false (default), "google", "google-universal", "custom"
   google:
-    tracking_id          : UA-134218317-1
+    tracking_id          :
     anonymize_ip         : # true, false (default)
 
 
@@ -110,15 +110,12 @@ author:
   location         : "Polkowice, Poland"
   email            : "piotr.w.lewandowski@gmail.com"
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: mailto:piotr.w.lewandowski@gmail.com
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://navaro1.github.io"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/petlew1"
+      url: "https://plewandow.ski"
+    - label: "X"
+      icon: "fab fa-fw fa-square-x-twitter"
+      url: "https://x.com/petlew1"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url: "https://www.facebook.com/petlew1/"
@@ -132,9 +129,9 @@ author:
 # Site Footer
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/petlew1"
+    - label: "X"
+      icon: "fab fa-fw fa-square-x-twitter"
+      url: "https://x.com/petlew1"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url:
@@ -223,7 +220,7 @@ sass:
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
-timezone: "CET" # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: "Europe/Warsaw" # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
 # Plugins (previously gems:)
@@ -293,4 +290,3 @@ defaults:
       comments: # true
       share: true
       related: true
-
