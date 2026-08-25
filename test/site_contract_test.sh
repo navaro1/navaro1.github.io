@@ -26,6 +26,9 @@ require("home page uses the canonical apex URL", '<link rel="canonical" href="ht
 require("author website uses the canonical apex URL", 'href="https://plewandow.ski"' in home)
 require("Inter variable font reaches the built stylesheet", "InterVariable.woff2" in css)
 require("wide desktop frame reaches the built stylesheet", "max-width:1440px" in css)
+require("Minimal Mistakes 4.28.1 renders the site", "Minimal Mistakes Jekyll Theme 4.28.1" in home)
+require("the current theme copy button runtime is present", "Copy to clipboard" in javascript)
+require("the copy button is enabled", "window.enable_copy_code_button = true" in article)
 require("Mermaid 11 output receives diagram styling", "code.language-mermaid" in css)
 require("MathJax 4 display equations receive overflow styling", "mjx-container[display=true]" in css)
 require("MathJax 4.1.3 is available in technical articles", "mathjax@4.1.3/tex-mml-chtml.js" in article)
@@ -41,5 +44,5 @@ require("the X profile uses the current domain and icon", 'href="https://x.com/p
 require("the roman font asset reaches the built site", (site / "assets" / "fonts" / "InterVariable.woff2").is_file())
 require("the italic font asset reaches the built site", (site / "assets" / "fonts" / "InterVariable-Italic.woff2").is_file())
 
-print("site contract: 19 checks passed")
+print("site contract: 22 checks passed")
 PY
