@@ -271,3 +271,37 @@ textarea:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Inline SVG charts in posts (_includes/posts/*) */
+.viz-figure {
+  display: block;
+  margin: 2em 0;
+
+  figcaption {
+    margin-bottom: 0.75em;
+    font-size: 0.85em;
+    line-height: 1.5;
+  }
+
+  .viz-scroll {
+    overflow-x: auto;
+  }
+
+  svg {
+    min-width: 620px;
+    overflow: visible;
+  }
+
+  details {
+    margin-top: 0.75em;
+    font-size: 0.85em;
+  }
+
+  summary {
+    cursor: pointer;
+  }
+
+  table {
+    margin-top: 0.5em;
+  }
+}
