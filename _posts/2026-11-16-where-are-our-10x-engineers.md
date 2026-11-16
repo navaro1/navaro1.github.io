@@ -9,12 +9,12 @@ toc_label: "Steps"
 header:
   teaser: /assets/img/where-are-our-10x-engineers/01-cover.jpg
   og_image: /assets/img/where-are-our-10x-engineers/01-cover.jpg
-youtube_id:
+youtube_id: go_Fjw_51W4
 ---
 
 Agents write most of my code now. Typing it myself is close to 0% of my week. So where are our 10× engineers?
 
-I recorded a 20-minute talk about that question. This post is the written walkthrough: the same model, one step at a time, with the charts and the numbers. You can check my work instead of trusting my slides. Each step says where it is in the talk.
+I recorded a 20-minute talk about that question. This post is the written walkthrough: the same model, one step at a time, with the charts and the numbers. You can check my work instead of trusting my slides. The video is right below, and each step links to its moment in the talk.
 
 {% if page.youtube_id %}{% include video id=page.youtube_id provider="youtube" %}{% endif %}
 
@@ -24,7 +24,7 @@ One warning first. The formula below is a guidepost, not a strict rule. I think 
 
 ## Step 1: where an engineer's week goes
 
-*In the talk: 1:57*
+*In the talk: [1:57](https://www.youtube.com/watch?v=go_Fjw_51W4&t=117s)*
 
 Start with a week before any agent. A Microsoft survey (Meyer et al., IEEE TSE 2021) asked 5,928 developers where their last workday went. Writing code was 21% of the productive time. The rest was aligning (36%), checking (18%), repairing (19%) and understanding (7%).
 
@@ -41,7 +41,7 @@ Then agents arrived. The 2026 data I used in the talk shows writing down to abou
 
 ## Step 2: the 2× ceiling
 
-*In the talk: 4:17*
+*In the talk: [4:17](https://www.youtube.com/watch?v=go_Fjw_51W4&t=257s)*
 
 Now imagine perfect agents. Writing is free. Nobody reviews anything. Nothing breaks.
 
@@ -55,7 +55,7 @@ And that is the best case. Real agents ship bugs, and someone has to check their
 
 ## Step 3: the formula
 
-*In the talk: 5:05*
+*In the talk: [5:05](https://www.youtube.com/watch?v=go_Fjw_51W4&t=305s)*
 
 To include checking and bugs, I use one formula for the output of one person:
 
@@ -80,7 +80,7 @@ To get a high $T$, you need a small denominator. That is the whole game. Paste t
 
 ## Step 4: the defect rate decides if you gain at all
 
-*In the talk: 7:26*
+*In the talk: [7:26](https://www.youtube.com/watch?v=go_Fjw_51W4&t=446s)*
 
 I think a lot of the community sees this by now: the error rate of the agent is the most important number. Here is the model from the talk, with agents that write ten times faster, for every defect rate from 0% to 50%:
 
@@ -95,13 +95,13 @@ Those defect rates sound high. Many organizations live with them anyway. And eve
 
 ## Step 5: what 10× takes
 
-*In the talk: 8:53*
+*In the talk: [8:53](https://www.youtube.com/watch?v=go_Fjw_51W4&t=533s)*
 
 The ceiling comes from aligning and understanding. So 10× has to change those terms. Faster writing does nothing for them.
 
 ### One decision must cover more changes
 
-*In the talk: 9:32*
+*In the talk: [9:32](https://www.youtube.com/watch?v=go_Fjw_51W4&t=572s)*
 
 ![Slide: 10× needs one decision to cover seven changes.](/assets/img/where-are-our-10x-engineers/08-one-decision.jpg)
 
@@ -115,7 +115,7 @@ So align strictly and aggressively, once, and make that one decision cover a cou
 
 ### Shrink what an agent can produce
 
-*In the talk: 10:40*
+*In the talk: [10:40](https://www.youtube.com/watch?v=go_Fjw_51W4&t=640s)*
 
 ![Slide: the solution space, from non-solutions to the goal.](/assets/img/where-are-our-10x-engineers/09-solution-space.jpg)
 
@@ -125,7 +125,7 @@ Linters, static checks and formal verification all do one job here. They shrink 
 
 ### Three rules for the codebase
 
-*In the talk: 13:35*
+*In the talk: [13:35](https://www.youtube.com/watch?v=go_Fjw_51W4&t=815s)*
 
 ![Slide: three rules shrink what agents can get wrong.](/assets/img/where-are-our-10x-engineers/10-three-rules.jpg)
 
@@ -139,17 +139,17 @@ Agents copy the patterns they find. Lauren Tan's inverse pyramid puts the codeba
 
 ### Every change returns a proof a person can check
 
-*In the talk: 16:06*
+*In the talk: [16:06](https://www.youtube.com/watch?v=go_Fjw_51W4&t=966s)*
 
 ![Slide: each part returns a proof a person can check.](/assets/img/where-are-our-10x-engineers/11-proof.jpg)
 
 Use agents on all five parts of the week, including review. Today, automated checks stop maybe 15% of the wrong changes. Everything else lands on a person, who has to step back, take a look and fix it. That keeps you near 2×. For 10×, about 99% of the wrong changes must stop before a person looks, and each change has to come with a proof that a person can check quickly.
 
-(In the video I say "50%" at one point. The slide is right: 15%.)
+(In the video I say "50%" at [17:28](https://www.youtube.com/watch?v=go_Fjw_51W4&t=1048s). The slide is right: 15%.)
 
 ### Align all stakeholders fast, or need none
 
-*In the talk: 18:03*
+*In the talk: [18:03](https://www.youtube.com/watch?v=go_Fjw_51W4&t=1083s)*
 
 ![Slide: align all stakeholders fast, or need none.](/assets/img/where-are-our-10x-engineers/12-align.jpg)
 
@@ -163,7 +163,7 @@ That makes alignment, the people skill of holding a socio-technical system toget
 
 ## Summary
 
-*In the talk: 19:49*
+*In the talk: [19:49](https://www.youtube.com/watch?v=go_Fjw_51W4&t=1189s)*
 
 ![Summary slide: 10× needs fewer decisions per change.](/assets/img/where-are-our-10x-engineers/13-summary.jpg)
 
